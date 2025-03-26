@@ -1,0 +1,38 @@
+<br>
+<div class="conteiner">
+    <div class="row">
+        <div class="col-lg-4"></div>
+
+        <div class="col-lg-4 centralizar topo">
+          <div class="card">
+            <div class="card-body">
+              <h3>Cadastro de Turma:</h3>
+              <br>
+              <mdb-form-control>
+                <input mdbInput type="text" id="usuario" class="form-control" [(ngModel)] = "turma.nomeTurma"/>
+                <label mdbLabel class="form-label" for="usuario">Nome da Turma</label>
+              </mdb-form-control>
+              <br>
+              <mdb-form-control>
+                <input mdbInput type="text" id="senha" class="form-control" [(ngModel)] = "turma.semestreTurma"/>
+                <label mdbLabel class="form-label" for="senha">Semestre da Turma</label>
+              </mdb-form-control>
+              <br>
+              <mdb-form-control>
+                <input mdbInput type="text" id="senha" class="form-control" [(ngModel)] = "turma.anoTurma"/>
+                <label mdbLabel class="form-label" for="senha">Ano da Turma</label>
+              </mdb-form-control>
+              <br>
+              <mdb-form-control>
+                <input mdbInput type="text" id="senha" class="form-control" [(ngModel)] = "turma.turnoTurma"/>
+                <label mdbLabel class="form-label" for="senha">Turno da Turma</label>
+              </mdb-form-control>
+              <br>
+              <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="save()">Salvar</button>
+            </div>
+          </div>
+        </div>
+    
+        <div class="col-lg-4"></div>
+    </div>
+</div>

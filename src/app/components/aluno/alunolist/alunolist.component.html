@@ -1,0 +1,46 @@
+<br>
+<div class="conteiner">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="card">
+            <div class="card-body">
+
+                <h3> Listagem de Alunos</h3>
+
+                <div class = "direita"> 
+                    <button type="button" class="btn btn-primary btn-rounded" mdbRipple routerLink = "/admin/aluno/new">Novo</button>
+                </div>
+
+                <br> 
+                <table border="1" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID Aluno</th>
+                        <th scope="col">Nome do Aluno</th>
+                        <th scope="col">CPF do Aluno</th>
+                        <th scope="col">Telefone do Aluno</th>
+                        <th scope="col">Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                        @for (aluno of listaAluno; track $index) {
+                      <tr>
+                        <td> {{aluno.idAluno}} </td>
+                        <td> {{aluno.nomeAluno}} </td>
+                        <td> {{aluno.cpfAluno}} </td>
+                        <td> {{aluno.telefoneAluno}} </td>
+                        <td class = "direita"> 
+                            <button type="button" class="btn btn-primary btn-rounded" mdbRipple routerLink = "/admin/aluno/edit/{{aluno.idAluno}}">Editar</button>
+                            <button type="button" class="btn btn-danger btn-rounded" mdbRipple (click)="deleteById(aluno)">Excluir</button>
+                         </td>
+                      </tr>
+                        }
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

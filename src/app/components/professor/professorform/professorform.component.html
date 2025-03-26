@@ -1,0 +1,43 @@
+<br>
+<div class="conteiner">
+    <div class="row">
+        <div class="col-lg-4"></div>
+
+        <div class="col-lg-4 centralizar topo">
+          <div class="card">
+            <div class="card-body">
+              <h3>Cadastro de Professor:</h3>
+              <br>
+              <mdb-form-control>
+                <input mdbInput type="text" id="usuario" class="form-control" [(ngModel)] = "professor.nomeProf"/>
+                <label mdbLabel class="form-label" for="usuario">Nome do Professor</label>
+              </mdb-form-control>
+              <br>
+              <mdb-form-control>
+                <input mdbInput type="text" id="senha" class="form-control" [(ngModel)] = "professor.cpfProf"/>
+                <label mdbLabel class="form-label" for="senha">CPF do Professor</label>
+              </mdb-form-control>
+              <br>
+              <mdb-form-control>
+                <input mdbInput type="text" id="senha" class="form-control" [(ngModel)] = "professor.emailProf"/>
+                <label mdbLabel class="form-label" for="senha">Email do Professor</label>
+              </mdb-form-control>
+              <br>
+              <mdb-form-control>
+                <input mdbInput type="text" id="senha" class="form-control" [(ngModel)] = "professor.telefoneProf"/>
+                <label mdbLabel class="form-label" for="senha">Telefone do Professor</label>
+              </mdb-form-control>
+              <br>
+              <mdb-form-control>
+                <input mdbInput type="text" id="senha" class="form-control" [(ngModel)] = "professor.especialidadeProf"/>
+                <label mdbLabel class="form-label" for="senha">Especialidade do Professor</label>
+              </mdb-form-control>
+              <br>
+              <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="save()">Salvar</button>
+            </div>
+          </div>
+        </div>
+    
+        <div class="col-lg-4"></div>
+    </div>
+</div>

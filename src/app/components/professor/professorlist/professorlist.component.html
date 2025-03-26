@@ -1,0 +1,50 @@
+<br>
+<div class="conteiner">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="card">
+            <div class="card-body">
+
+                <h3> Listagem de Professores</h3>
+
+                <div class="direita">
+                    <button type="button" class="btn btn-primary btn-rounded" mdbRipple routerLink = "/admin/professor/new">Novo</button> 
+                </div>
+
+            <br>
+            <table border="1" class="table table-striped">
+                <thead>
+                    <tr> 
+                        <th scope="col">ID Professor</th>
+                        <th scope="col">Nome do Professor</th>
+                        <th scope="col">CPF do Professor</th>
+                        <th scope="col">Email do Professor</th>
+                        <th scope="col">Especialidade do Professor</th>
+                        <th scope="col">Telefone do Professor</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead> 
+                <tbody> 
+                    @for (professor of listaProfessor; track $index) {
+
+                        <tr> 
+                            <td> {{professor.idProf}}</td>
+                            <td> {{professor.nomeProf}}</td>
+                            <td> {{professor.cpfProf}}</td>
+                            <td> {{professor.emailProf}}</td>
+                            <td> {{professor.telefoneProf}}</td>
+                            <td> {{professor.especialidadeProf}}</td>
+                            <td class="direita"> 
+                                <button type="button" class="btn btn-primary btn-rounded" mdbRipple routerLink = "/admin/professor/edit/{{professor.idProf}}">Editar</button>
+                                <button type="button" class="btn btn-danger btn-rounded" mdbRipple (click)="deleteById(professor)">Excluir</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

@@ -5,6 +5,7 @@ import { Aluno } from '../../../models/aluno';
 import { routes } from '../../../app.routes';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2'
+import { AlunoService } from '../../../services/aluno.service';
 
 @Component({
   selector: 'app-alunoform',
@@ -19,6 +20,8 @@ export class AlunoformComponent {
   router = inject (ActivatedRoute);
   router2 = inject(Router);
 
+  AlunoService = inject (AlunoService);
+
 
   constructor() {
     let idAluno = this.router.snapshot.params ['idAluno'];
@@ -28,28 +31,60 @@ export class AlunoformComponent {
   }
 
   findById (idAluno: number){
-    //busca no back end
-    let alunoRetornado: Aluno = new Aluno (idAluno, "Hellen", "0955555", "454545454545");
-    this.aluno = alunoRetornado;
+    
+    this.AlunoService.findById(idAluno).subscribe({
+      next: retorno => {
+        this.aluno = retorno;
+      },
+      error: erro => {
+                Swal.fire({
+                  title: 'Ocorreu um erro',
+                  //icon: 'sucess',
+                  confirmButtonText: 'Ok',
+              });
+      }
+    });
   }
 
   save(){
     if (this.aluno.idAluno > 0){
 
-     /* Swal.fire({
-        title: "Sucesso!",
-        text: "Editado com sucesso!",
-        icon: "warning",
-        confirmButtonText: "Ok"
-      })*/ //QUANDO MUDA O ICON PARA "sucess" o "fire" de Swal.fire fica dando erro
 
+      /*this.AlunoService.findById(idAluno).subscribe({
+        next: retorno => {
+  
+        },
+        error: erro => {
+                  Swal.fire({
+                    title: 'Ocorreu um erro',
+                    //icon: 'sucess',
+                    confirmButtonText: 'Ok',
+                });
+        }
+      });*/
+
+  
       alert('Editado com sucesso!');
       this.router2.navigate(['admin/aluno'], {state: { alunoEditado: this.aluno}});
 
     }else{
+
+      /*this.AlunoService.findById(idAluno).subscribe({
+        next: retorno => {
+  
+        },
+        error: erro => {
+                  Swal.fire({
+                    title: 'Ocorreu um erro',
+                    //icon: 'sucess',
+                    confirmButtonText: 'Ok',
+                });
+        }
+      });*/
+
       alert('Salvo com sucesso!');
       this.router2.navigate(['admin/aluno'], {state: { alunoNovo: this.aluno}});
     }
-  }
+  } 
 
 }

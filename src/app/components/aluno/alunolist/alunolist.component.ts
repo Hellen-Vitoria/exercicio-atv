@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Aluno } from '../../../models/aluno';
 import { RouterLink } from '@angular/router';
+import { AlunoService } from '../../../services/aluno.service';
+import Swal from 'sweetalert2';
+import { config } from 'rxjs';
 
 @Component({
   selector: 'app-alunolist',
@@ -14,11 +17,12 @@ export class AlunolistComponent {
 
   listaAluno: Aluno[] = [];
 
+  alunoService = inject (AlunoService);
+
+
   constructor(){
 
-    this.listaAluno.push(new Aluno(1, 'Hellen Vitória Marques da Silva Gonzaga', '095.420.443-30', '(45) 98834-7268'));
-    this.listaAluno.push(new Aluno(2, 'Pedro Henrique', '444.333.556-67', '(45) 99999-6666'));
-    this.listaAluno.push(new Aluno(3, 'Diolan Nogueira', '555.777.569-54', '(45) 66666-9999'));
+    this.findAll();
 
     let alunoNovo = history.state.alunoNovo;
     let alunoEditado = history.state.alunoEditado;
@@ -34,10 +38,40 @@ export class AlunolistComponent {
     }
   }
 
+  findAll(){
+    this.alunoService.findAll().subscribe({
+      next: lista => { //quando o back retornar o que se espera
+        this.listaAluno = lista;
+      },
+      error: erro => { //quando ocorrer qualquer erro (badrequest, exceptions...)
+        Swal.fire({
+          title: 'Ocorreu um erro',
+          //icon: 'sucess',
+          confirmButtonText: 'Ok',
+      });
+      }
+    });
+  }
+
   deleteById(aluno: Aluno){
     if (confirm ("Tem certeza que deseja deletar este registro?")){
-    let indice = this.listaAluno.findIndex (x => {return x.idAluno == aluno.idAluno});
-    this.listaAluno.splice(indice, 1);
+      this.alunoService.delete(aluno.idAluno).subscribe({
+        next: lista => { //quando o back retornar o que se espera
+          Swal.fire({
+            title: 'Deletado com sucesso!',
+            //icon: 'sucess',
+            confirmButtonText: 'Ok',
+          });
+          this.findAll();
+        },
+        error: erro => { //quando ocorrer qualquer erro (badrequest, exceptions...)
+          Swal.fire({
+            title: 'Ocorreu um erro',
+            //icon: 'sucess',
+            confirmButtonText: 'Ok',
+        });
+        }
+      });
     }
   }
 }

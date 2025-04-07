@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Input, input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { Aluno } from '../../../models/aluno';
@@ -16,7 +16,11 @@ import { AlunoService } from '../../../services/aluno.service';
 })
 export class AlunoformComponent {
 
-  aluno: Aluno = new Aluno(0, "", "", "");
+  @Input ("aluno") aluno: Aluno = new Aluno();
+  @Output ("meuEvento") meuEvento = new EventEmitter();
+
+
+
   router = inject (ActivatedRoute);
   router2 = inject(Router);
 
